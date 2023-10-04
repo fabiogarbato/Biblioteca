@@ -1,6 +1,9 @@
 USE Biblioteca
 GO
 
+--Fábio Garbato e Gabriel Pellozi 
+--Esse SCRIPT tem como objetivo inserir todos os dados das tabelas do banco, com seus respectivos atributos
+
 INSERT INTO Estado (SiglaEstado, DescricaoEstado)
 VALUES
     ('AC', 'Acre'),
@@ -134,7 +137,7 @@ VALUES
 
 INSERT INTO Livros (IdCategoria, Titulo, AnoPub, QtdeExemplaresDisp)
 VALUES
-    (1, 'O Senhor dos Anéis', 1954, 20),
+    (1, 'O Sistema dos Anéis', 1954, 20),
     (2, 'Dom Quixote', 1605, 15),
     (3, 'Orgulho e Preconceito', 1813, 12),
     (4, '1984', 1949, 18),
@@ -145,18 +148,18 @@ VALUES
     (1, 'Crime e Castigo', 1866, 14),
     (2, 'Odisseia', 800, 7),
     (3, 'O Grande Gatsby', 1925, 11),
-    (4, 'O Alquimista', 1988, 9),
+    (4, 'O Sistema', 1988, 9),
     (5, 'Ulisses', 1922, 13),
     (6, 'O Hobbit', 1937, 16),
     (7, 'Harry Potter e o Prisioneiro de Azkaban', 1999, 20),
-    (8, 'O Pequeno Príncipe', 1943, 19),
+    (8, 'O Sistema Príncipe', 1943, 19),
     (1, 'Memórias Póstumas de Brás Cubas', 1881, 10),
     (2, 'A Divina Comédia', 1308, 8),
     (3, 'Guerra e Paz', 1869, 12),
     (4, 'O Apanhador no Campo de Centeio', 1951, 14),
     (5, 'Em Busca do Tempo Perdido', 1913, 17),
     (6, 'O Sol é para Todos', 1960, 10),
-    (7, 'O Nome do Vento', 2007, 21),
+    (7, 'O Nome do Sistema', 2007, 21),
     (8, 'A Revolução dos Bichos', 1945, 11);
 
 INSERT INTO Autores (NomeAutor, DataNascimento)
@@ -213,6 +216,45 @@ VALUES
     (25, 'Gustavo Santos', 4612),
     (26, 'Teresa Silva', 4613),
     (27, 'Hugo Almeida', 4614);
+
+INSERT INTO Emprestimo (IdMembro, IdLivro, DataEmprestimo, DataDevPrevista, DataDevReal)
+VALUES
+    (1, 1, '15/10/2023', '30/10/2023', NULL),
+    (2, 2, '20/10/2023', '05/11/2023', NULL),
+    (3, 3, '25/10/2023', '10/11/2023', NULL),
+    (4, 4, '30/10/2023', '15/11/2023', NULL),
+    (5, 5, '05/11/2023', '20/11/2023', NULL),
+    (6, 6, '10/11/2023', '25/11/2023', NULL),
+    (7, 7, '15/11/2023', '30/11/2023', NULL),
+    (8, 8, '20/11/2023', '05/12/2023', NULL),
+    (9, 9, '25/11/2023', '10/12/2023', NULL),
+    (10, 10, '30/11/2023', '15/12/2023', NULL),
+    (11, 1, '05/12/2023', '20/12/2023', NULL),
+    (12, 2, '10/12/2023', '25/12/2023', NULL),
+    (13, 3, '15/12/2023', '30/12/2023', NULL),
+    (14, 4, '20/12/2023', '05/01/2024', NULL),
+    (15, 5, '25/12/2023', '10/01/2024', NULL),
+    (16, 6, '30/12/2023', '15/01/2024', NULL),
+    (17, 7, '05/01/2024', '20/01/2024', NULL),
+    (18, 8, '10/01/2024', '25/01/2024', NULL),
+    (19, 9, '15/01/2024', '30/01/2024', NULL),
+    (20, 10, '20/01/2024', '04/02/2024', NULL);
+
+INSERT INTO EmprestimoLivro (IdEmprestimo, IdLivro)
+VALUES
+    (1, 1),  
+    (1, 2),  
+    (2, 3),  
+    (2, 4),
+	(3, 5),  
+    (3, 6),  
+    (4, 7),  
+    (4, 8),  
+    (5, 9),  
+    (5, 10)
+
+
+
 
 
 
