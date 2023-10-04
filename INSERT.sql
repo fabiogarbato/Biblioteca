@@ -184,6 +184,35 @@ VALUES
     (6, 7),  
     (7, 7);  
 
+INSERT INTO Membros (IdEndereco, NomeMembro, NumIdentificacao)
+VALUES
+    (1, 'Maria Silva', 4587),
+    (2, 'José Santos', 4589),
+    (3, 'Ana Oliveira', 4590),
+    (4, 'Pedro Pereira', 4591),
+    (5, 'Luísa Ferreira', 4592),
+    (6, 'Ricardo Gomes', 4593),
+    (7, 'Carla Almeida', 4594),
+    (8, 'Fernando Rodrigues', 4595),
+    (9, 'Sofia Sousa', 4596),
+    (10, 'Marta Mendes', 4597),
+    (11, 'Antônio Lima', 4598),
+    (12, 'Luciana Ribeiro', 4599),
+    (13, 'Carlos Santos', 4600),
+    (14, 'Patrícia Oliveira', 4601),
+    (15, 'André Ferreira', 4602),
+    (16, 'Isabel Silva', 4603),
+    (17, 'Paulo Sá', 4604),
+    (18, 'Catarina Alves', 4605),
+    (19, 'Manuel Pereira', 4606),
+    (20, 'Beatriz Costa', 4607),
+    (21, 'Rui Gomes', 4608),
+    (22, 'Cristina Fernandes', 4609),
+    (23, 'João Rodrigues', 4610),
+    (24, 'Helena Ribeiro', 4611),
+    (25, 'Gustavo Santos', 4612),
+    (26, 'Teresa Silva', 4613),
+    (27, 'Hugo Almeida', 4614);
 
 
 
