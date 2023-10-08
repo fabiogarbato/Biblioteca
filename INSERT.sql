@@ -133,18 +133,20 @@ VALUES
     ('Fantasia'),
     ('Mistério'),
     ('Terror'),
-    ('Não Ficção');
+    ('Não Ficção'),
+	('Documentário');
 
 INSERT INTO Livros (IdCategoria, Titulo, AnoPub, QtdeExemplaresDisp)
 VALUES
     (1, 'O Sistema dos Anéis', 1954, 20),
     (2, 'Dom Quixote', 1605, 15),
     (3, 'Orgulho e Preconceito', 1813, 12),
+	(3, 'Luta por Meteoros', 2020, 4),
     (4, '1984', 1949, 18),
     (5, 'Cem Anos de Solidão', 1967, 25),
     (6, 'Moby Dick', 1851, 10),
     (7, 'Harry Potter e a Pedra Filosofal', 1997, 22),
-    (8, 'A Metamorfose', 1915, 8),
+    (8, 'A Metamorfose', 1915, 2),
     (1, 'Crime e Castigo', 1866, 14),
     (2, 'Odisseia', 800, 7),
     (3, 'O Grande Gatsby', 1925, 11),
