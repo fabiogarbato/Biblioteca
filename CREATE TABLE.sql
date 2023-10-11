@@ -3,6 +3,8 @@ GO
 
 --Fábio Garbato e Gabriel Pellozi 
 --Esse SCRIPT tem como objetivo a criação de todas as tabelas do banco, com seus respectivos atributos
+--2 - Criar as tabelas de acordo com o modelo lógico relacional idealizado na avaliação anterior, considerando as restrições de integridade; a base de dados deve conter pelo menos cinco tabelas, análogas a: livro,
+--autor, membro, categoria, empréstimo.
 
 IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.Autores') AND type = 'U')
 BEGIN

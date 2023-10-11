@@ -3,6 +3,7 @@ GO
 
 --Fábio Garbato e Gabriel Pellozi 
 --Esse SCRIPT tem como objetivo inserir todos os dados das tabelas do banco, com seus respectivos atributos
+-- 3 - Inserir pelo menos 5 registros em cada tabela.
 
 INSERT INTO Estado (SiglaEstado, DescricaoEstado)
 VALUES
