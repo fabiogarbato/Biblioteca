@@ -52,7 +52,7 @@ IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.Livro
 BEGIN
     CREATE TABLE LivroAutor (
     Id INT PRIMARY KEY IDENTITY,
-	IdLivro INT NOT NULL,
+	IdLivro INT UNIQUE NOT NULL,
 	IdAutor INT NOT NULL
 );
 	

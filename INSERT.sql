@@ -163,7 +163,8 @@ VALUES
     (5, 'Em Busca do Tempo Perdido', 1913, 17),
     (6, 'O Sol é para Todos', 1960, 10),
     (7, 'O Nome do Sistema', 2007, 21),
-    (8, 'A Revolução dos Bichos', 1945, 11);
+    (8, 'A Revolução dos Bichos', 1945, 11),
+	(2, 'O Expresso Solar', 1975, 35);
 
 INSERT INTO Autores (NomeAutor, DataNascimento)
 VALUES
@@ -181,44 +182,14 @@ VALUES
 INSERT INTO LivroAutor (IdLivro, IdAutor)
 VALUES
     (1, 1),  
-    (1, 2),  
-    (2, 3),  
-    (2, 4),  
-    (3, 5),  
-    (4, 6),  
-    (5, 7),  
-    (6, 7),  
-    (7, 7);  
-
-INSERT INTO Membros (IdEndereco, NomeMembro, NumIdentificacao)
-VALUES
-    (1, 'Maria Silva', 4587),
-    (2, 'José Santos', 4589),
-    (3, 'Ana Oliveira', 4590),
-    (4, 'Pedro Pereira', 4591),
-    (5, 'Luísa Ferreira', 4592),
-    (6, 'Ricardo Gomes', 4593),
-    (7, 'Carla Almeida', 4594),
-    (8, 'Fernando Rodrigues', 4595),
-    (9, 'Sofia Sousa', 4596),
-    (10, 'Marta Mendes', 4597),
-    (11, 'Antônio Lima', 4598),
-    (12, 'Luciana Ribeiro', 4599),
-    (13, 'Carlos Santos', 4600),
-    (14, 'Patrícia Oliveira', 4601),
-    (15, 'André Ferreira', 4602),
-    (16, 'Isabel Silva', 4603),
-    (17, 'Paulo Sá', 4604),
-    (18, 'Catarina Alves', 4605),
-    (19, 'Manuel Pereira', 4606),
-    (20, 'Beatriz Costa', 4607),
-    (21, 'Rui Gomes', 4608),
-    (22, 'Cristina Fernandes', 4609),
-    (23, 'João Rodrigues', 4610),
-    (24, 'Helena Ribeiro', 4611),
-    (25, 'Gustavo Santos', 4612),
-    (26, 'Teresa Silva', 4613),
-    (27, 'Hugo Almeida', 4614);
+    (2, 1),  
+    (3, 3),  
+    (4, 4),  
+    (5, 5),  
+    (6, 6),  
+    (7, 7),  
+    (8, 7),  
+    (9, 7);  
 
 INSERT INTO Emprestimo (IdMembro, IdLivro, DataEmprestimo, DataDevPrevista, DataDevReal)
 VALUES
@@ -226,8 +197,8 @@ VALUES
     (2, 2, '20/10/2023', '05/11/2023', NULL),
     (3, 3, '25/10/2023', '10/11/2023', NULL),
     (4, 4, '30/10/2023', '15/11/2023', NULL),
-    (5, 5, '05/11/2023', '20/11/2023', NULL),
-    (6, 6, '10/11/2023', '25/11/2023', NULL),
+    (5, 5, '09/11/2023', '20/11/2023', NULL),
+    (6, 6, '06/11/2023', '25/11/2023', NULL),
     (7, 7, '15/11/2023', '30/11/2023', NULL),
     (8, 8, '20/11/2023', '05/12/2023', NULL),
     (9, 9, '25/11/2023', '10/12/2023', NULL),
@@ -241,7 +212,9 @@ VALUES
     (17, 7, '05/01/2024', '20/01/2024', NULL),
     (18, 8, '10/01/2024', '25/01/2024', NULL),
     (19, 9, '15/01/2024', '30/01/2024', NULL),
-    (20, 10, '20/01/2024', '04/02/2024', NULL);
+    (20, 10, '20/01/2024', '04/02/2024', NULL),
+	(21, 3, '18/05/2022', '30/05/2022', NULL),
+	(22, 7, '18/05/2020', '30/05/2020', NULL);
 
 INSERT INTO EmprestimoLivro (IdEmprestimo, IdLivro)
 VALUES
