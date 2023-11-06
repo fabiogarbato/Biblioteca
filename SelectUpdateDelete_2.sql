@@ -7,11 +7,11 @@ GO
 --1 Listar o título do livro e o nome do autor para todos os livros cadastrados na base
 SELECT
 	l.Titulo,
-	a.NomeAutor
+	ISNULL(a.NomeAutor, 'Autor Desconhecido') as NomeAutor
 FROM
 	Livros l
-JOIN LivroAutor la ON la.IdLivro = l.IdLivro
-JOIN Autores a ON a.IdAutor = la.idAutor
+LEFT JOIN LivroAutor la ON la.IdLivro = l.IdLivro
+LEFT JOIN Autores a ON a.IdAutor = la.idAutor
 
 --2 Listar a data de empréstimo, o nome do membro que emprestou, e o título do livro de todos os empréstimos feitos neste ano
 SELECT
@@ -20,8 +20,8 @@ SELECT
 	l.Titulo
 FROM
 	Emprestimo e
-JOIN Membros m ON e.IdMembro = m.IdMembro
-JOIN Livros l ON e.IdLivro = l.IdLivro
+INNER JOIN Membros m ON e.IdMembro = m.IdMembro
+INNER JOIN Livros l ON e.IdLivro = l.IdLivro
 WHERE
 	YEAR(e.DataEmprestimo) = YEAR(GETDATE())
 
@@ -31,24 +31,40 @@ SELECT
 	l.Titulo
 FROM
 	CategoriaLivro cl
-JOIN Livros l 
+INNER JOIN Livros l 
 ON cl.IdCategoria = l.IdCategoria
 
 --4 Listar o título do livro, a data de empréstimo e a data da devolução real de todos os livros da base
+BEGIN TRAN
+
 SELECT
 	l.Titulo,
 	e.DataEmprestimo,
-	e.DataDevReal
+	COALESCE(CONVERT(varchar, e.DataDevReal, 103), 'Livro ainda não devolvido') AS DataDevReal
 FROM
 	Livros l
-JOIN Emprestimo e 
+INNER JOIN Emprestimo e 
 ON e.IdLivro = l.IdLivro
 
---5 Listar a data de empréstimo, data da devolução real, nome do membro que emprestou, título do livro, nome da categoria e nome do autor (ou autores) de todos os empréstimos realizados
+UPDATE Emprestimo SET DataDevReal = GETDATE() WHERE IdEmprestimo IN (1,2,3)
+
 SELECT
-	e.IdEmprestimo,
+	l.Titulo,
 	e.DataEmprestimo,
-	e.DataDevReal,
+	COALESCE(CONVERT(varchar, e.DataDevReal, 103), 'Livro ainda não devolvido') AS DataDevReal
+FROM
+	Livros l
+INNER JOIN Emprestimo e 
+ON e.IdLivro = l.IdLivro
+
+ROLLBACK TRAN
+
+--5 Listar a data de empréstimo, data da devolução real, nome do membro que emprestou, título do livro, nome da categoria e nome do autor (ou autores) de todos os empréstimos realizados
+BEGIN TRAN 
+
+SELECT
+	e.DataEmprestimo,
+	COALESCE(CONVERT(varchar, e.DataDevReal, 103), 'Livro ainda não devolvido') AS DataDevReal,
 	m.NomeMembro,
 	l.Titulo,
 	c.NomeCategoria,
@@ -61,9 +77,28 @@ LEFT JOIN CategoriaLivro c ON c.IdCategoria = l.IdCategoria
 LEFT JOIN LivroAutor la ON la.IdLivro = l.IdLivro
 LEFT JOIN Autores a ON a.IdAutor = la.idAutor
 
+UPDATE Emprestimo SET DataDevReal = GETDATE() WHERE IdEmprestimo IN (1,2,3)
+
+SELECT
+	e.DataEmprestimo,
+	COALESCE(CONVERT(varchar, e.DataDevReal, 103), 'Livro ainda não devolvido') AS DataDevReal,
+	m.NomeMembro,
+	l.Titulo,
+	c.NomeCategoria,
+	ISNULL(a.NomeAutor, 'Sem Registro') AS NomeAutor
+FROM
+	Emprestimo e
+LEFT JOIN Membros m ON m.IdMembro = e.IdMembro
+LEFT JOIN Livros l ON l.IdLivro = e.IdLivro
+LEFT JOIN CategoriaLivro c ON c.IdCategoria = l.IdCategoria
+LEFT JOIN LivroAutor la ON la.IdLivro = l.IdLivro
+LEFT JOIN Autores a ON a.IdAutor = la.idAutor
+
+ROLLBACK TRAN 
+
 --6 Contar quantos livros estão cadastrados na base
 SELECT 
-	Count(*) TotalLivros 
+	Count(*) AS TotalLivros 
 FROM 
 	Livros
 
@@ -81,7 +116,7 @@ SELECT
 	COUNT(*) AS QuantidadeLivros
 FROM
 	CategoriaLivro c
-JOIN Livros l ON l.IdCategoria = c.IdCategoria
+INNER JOIN Livros l ON l.IdCategoria = c.IdCategoria
 GROUP BY 
 	c.NomeCategoria
 
@@ -91,12 +126,16 @@ SELECT
 	m.NomeMembro
 FROM
 	Emprestimo e
-JOIN Livros l ON l.IdLivro = e.IdLivro
-JOIN Membros m ON m.IdMembro = e.IdMembro
+INNER JOIN Livros l ON l.IdLivro = e.IdLivro
+INNER JOIN Membros m ON m.IdMembro = e.IdMembro
 WHERE 
 	e.DataEmprestimo >= DATEADD(WEEK, DATEDIFF(WEEK, 0, GETDATE()), 0)  
-	AND 
+AND 
 	e.DataEmprestimo < DATEADD(WEEK, DATEDIFF(WEEK, 0, GETDATE()) + 1, 0)
+GROUP BY 
+	l.Titulo,
+	m.NomeMembro,
+	e.DataEmprestimo
 ORDER BY
 	e.DataEmprestimo
 
@@ -112,4 +151,4 @@ WHERE
 GROUP BY 
 	DATEPART(YEAR, e.DataEmprestimo), DATENAME(MONTH, e.DataEmprestimo)
 ORDER BY 
-	Ano, Mes DESC;
+	Mes DESC;
